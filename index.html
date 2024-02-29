@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Stock Market | CSE MultiMedia Archives</title>
+		<meta charset="UTF-8"/>
+		<style>
+			html, body, svg{
+				margin: 0;
+				padding: 0;
+				font-family: Arial, Helvetica, sans-serif;
+			}
+		</style>
+		<script>
+			const mCountGraph = [["646464", [16, 16],
+								  "cd98ec", [5 , 5],
+								  "f0c91a", [0 , 0]],
+								 ["mCountGraph", [20, 0], [window.innerHeight, window.innerWidth / 4]]];
+			const pCountGraph = [["646464", [11, 11],
+								  "8adbe2", [5 , 5],
+								  "cd98ec", [5 , 5],
+								  "f0c91a", [0 , 0]],
+								 ["pCountGraph", [20, 0], [window.innerHeight, window.innerWidth / 4]]];
+			// window.onresize = Graph([mCountGraph[0], [mCountGraph[1][0], mCountGraph[1][1], [window.innerHeight, window.innerWidth]]]);
+			function Graph(array)
+			{
+				document.getElementById(array[1][0]).setAttribute("height", array[1][2][0]);
+				document.getElementById(array[1][0]).setAttribute("width", array[1][2][1]);
+				let counter = 0;
+				let rsltStr = "";
+				while(counter < array[0].length / 2)
+				{
+					rsltStr += `<polyline id="${array[1][0] + counter}" style="fill:#${array[0][counter * 2]}38;stroke:none;stroke-width:${array[1][1][1]}px"/>`;
+					counter++;
+				}
+				document.getElementById(array[1][0]).innerHTML = rsltStr;
+				let primaryCounter = 0;
+				while(primaryCounter < array[0].length / 2)
+				{
+					counter = 0;
+					rsltStr = `${array[1][1][1] / -2},${array[1][2][0]}
+					${array[1][1][1] / -2},${array[1][2][0] - array[0][(primaryCounter + 1) * 2 - 1][0] * (array[1][2][0] - array[1][1][1]) / array[1][1][0] - array[1][1][1] / 2} `;
+					while(counter < array[0][(primaryCounter + 1) * 2 - 1].length)
+					{
+						rsltStr += `${counter / (array[0][(primaryCounter + 1) * 2 - 1].length - 1) * array[1][2][1]},
+						${array[1][2][0] - array[0][(primaryCounter + 1) * 2 - 1][counter] * (array[1][2][0] - array[1][1][1]) / array[1][1][0] - array[1][1][1] / 2} `;
+						counter++;
+					}
+					rsltStr += `${array[1][2][1] + array[1][1][1]},${array[1][2][0] - array[0][(primaryCounter + 1) * 2 - 1][array[0][(primaryCounter + 1) * 2 - 1].length - 1]
+						 * (array[1][2][0] - array[1][1][1]) / array[1][1][0] - array[1][1][1] / 2}
+					${array[1][2][1] + array[1][1][1]},${array[1][2][0]}`
+					document.getElementById(array[1][0] + primaryCounter).setAttribute("points", rsltStr);
+					primaryCounter++;
+				}
+			}
+			function FillGraphs()
+			{
+				Graph(mCountGraph);
+				Graph(pCountGraph);
+			}
+		</script>
+	</head>
+	<body onload="FillGraphs()">
+		<div style="display:grid;grid-template-columns:auto auto auto auto;">
+			<div style="overflow:hidden;">
+				<svg width="500" height="10">
+					<rect width="500" height="10" x="0" y="0" fill="#64646438"/>
+				</svg>
+				<p style="margin:20px">FFOG: The Fog</p>
+				<svg width="500" height="10">
+					<rect width="500" height="10" x="0" y="0" fill="#cd98ec38"/>
+				</svg>
+				<p style="margin:20px">CSEA: Chaos Eaters Multimedia Archives Organization</p>
+				<svg width="500" height="10">
+					<rect width="500" height="10" x="0" y="0" fill="#f0c91a38"/>
+				</svg>
+				<p style="margin:20px">NPRO: Nerd Productions</p>
+				<br/><br/>
+				<p style="margin:20px;"><i>This graph shows the amount of Dollary Doos each company is worth. Caps at 20. Yes, I will add numbers later. Also it's just flat lines because nothing has happened. Also here are the specific values because it's borderline impossible to tell at the moment: Fog = 16, CEMMA = 5, Nerd Pro. = 0. Also just to clarify by "Caps at 20" I just mean that that's the top of the graph.</i></p>
+			</div>
+			<svg id="mCountGraph">
+			</svg>
+			<div style="overflow:hidden;">
+				<svg width="500" height="10">
+					<rect width="500" height="10" x="0" y="0" fill="#64646438"/>
+				</svg>
+				<p style="margin:20px">Henry Halsey</p>
+				<svg width="500" height="10">
+					<rect width="500" height="10" x="0" y="0" fill="#8adbe238"/>
+				</svg>
+				<p style="margin:20px">Eden Ye</p>
+				<svg width="500" height="10">
+					<rect width="500" height="10" x="0" y="0" fill="#cd98ec38"/>
+				</svg>
+				<p style="margin:20px">Konstantin Edunov</p>
+				<svg width="500" height="10">
+					<rect width="500" height="10" x="0" y="0" fill="#f0c91a38"/>
+				</svg>
+				<p style="margin:20px">Fedor Gladkoborodov</p>
+				<br/><br/>
+				<p style="margin:20px;"><i>This graph shows the amount of Dollary Doos each person owns. Caps at 20. Henry = 11, Eden = 5, Konstantin = 5, Fedor = 0.</i></p>
+			</div>
+			<svg id="pCountGraph">
+			</svg>
+		</div>
+	</body>
+</html>
