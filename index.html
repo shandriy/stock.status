@@ -8,17 +8,23 @@
 				margin: 0;
 				padding: 0;
 				font-family: Arial, Helvetica, sans-serif;
+				background-color: #f0f0f0;
+			}
+			#grid-layout{
+				display:grid;
+				grid-template-columns:15vw auto;
 			}
 		</style>
 		<script>
-			const mCountGraph = [["646464", [16, 16],
-								  "cd98ec", [5 , 5],
-								  "f0c91a", [0 , 0]],
-								 ["mCountGraph", [20, 0], [window.innerHeight, window.innerWidth / 4]]];
-			const pCountGraph = [["646464", [11, 11],
-								  "8adbe2", [5 , 5],
-								  "cd98ec", [5 , 5],
-								  "f0c91a", [0 , 0]],
+			const mCountGraph = [["646464", [16, 16, 16],
+								  "cd98ec", [5 , 5 , 5 ],
+								  "f0c91a", [0 , 0 , 0 ]],
+								 ["mCountGraph", [100, 0], [window.innerHeight / 1.5, window.innerWidth / 1.5]],
+								 ["FFOG", "CSEA", "NPRO"]];
+			const pCountGraph = [["646464", [11, 11, 11],
+								  "8adbe2", [5 , 5 , 5 ],
+								  "cd98ec", [5 , 5 , 5 ],
+								  "f0c91a", [0 , 0 , 0 ]],
 								 ["pCountGraph", [20, 0], [window.innerHeight, window.innerWidth / 4]]];
 			// window.onresize = Graph([mCountGraph[0], [mCountGraph[1][0], mCountGraph[1][1], [window.innerHeight, window.innerWidth]]]);
 			function Graph(array)
@@ -30,6 +36,18 @@
 				while(counter < array[0].length / 2)
 				{
 					rsltStr += `<polyline id="${array[1][0] + counter}" style="fill:#${array[0][counter * 2]}38;stroke:none;stroke-width:${array[1][1][1]}px"/>`;
+					counter++;
+				}
+				counter = 0;
+				while(counter < array[0].length / 2)
+				{
+					rsltStr += `<text x="5" y="${array[1][2][0] - array[0][(counter + 1) * 2 - 1][0] * (array[1][2][0] - array[1][1][1]) / array[1][1][0] - array[1][1][1] / 2 - 5}"
+						 fill="#${array[0][counter * 2]}" stroke="black" stroke-width="0.2" font-size="20">
+						${array[2][counter]}</text>`;
+					rsltStr += `<text x="${array[1][2][1] - 5}" y="${array[1][2][0] - array[0][(counter + 1) * 2 - 1][array[0][(counter + 1) * 2 - 1].length - 1]
+						 * (array[1][2][0] - array[1][1][1]) / array[1][1][0] - array[1][1][1] / 2 - 5}"
+						 fill="#${array[0][counter * 2]}" stroke="black" stroke-width="0.2" font-size="20" text-anchor="end">
+						${array[0][(counter + 1) * 2 - 1][array[0][(counter + 1) * 2 - 1].length - 1]}</text>`;
 					counter++;
 				}
 				document.getElementById(array[1][0]).innerHTML = rsltStr;
@@ -55,52 +73,57 @@
 			function FillGraphs()
 			{
 				Graph(mCountGraph);
-				Graph(pCountGraph);
+				// Graph(pCountGraph);
 			}
 		</script>
 	</head>
 	<body onload="FillGraphs()">
-		<div style="display:grid;grid-template-columns:auto auto auto auto;">
-			<div style="overflow:hidden;">
-				<svg width="500" height="10">
-					<rect width="500" height="10" x="0" y="0" fill="#64646438"/>
+		<div id="grid-layout">
+			<div style="overflow:hidden;background-color:#dfdfdf;min-height:100vh">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 224 112" style="padding:1vw;background-color:#dfdfdf;">
+					<g stroke="#000">
+						<path d="M52.5 10c25 2 32 20 32.5 46 0 25-5 43-32.5 46-25 2-43-20-43-46 0-25 19-48 43-46z" fill="none" stroke-width="19"/>
+						<path d="M85 13v87h.001V13z" stroke-width="19"/>
+						<path d="M84 56h0-73 0zM50 39v35h.001V39z" stroke-width="19"/>
+					</g>
+					<g stroke="#fff">
+						<path d="M52.5 10c25 2 32 20 32.5 46 0 25-5 43-32.5 46-25 2-43-20-43-46 0-25 19-48 43-46z" fill="none" stroke-width="15"/>
+						<path d="M85 13v87h.001V13z" stroke-width="15"/>
+						<path d="M84 56h0-73 0zM50 39v35h.001V39z" stroke-width="15"/>
+					</g>
+					<text transform="translate(112 20) scale(0.6 0.63)" 
+					font-size="40" fill="#000000" stroke="#000000" stroke-width="6" font-family="Serif" text-anchor="start">
+						<tspan x="0" dy="0">Chaos</tspan>
+						<tspan x="0" dy="46.15px">Eaters</tspan>
+						<tspan x="0" dy="46.15px">Multimedia</tspan>
+						<tspan x="0" dy="46.15px">Archives</tspan>
+					</text>
+					<text transform="translate(112 20) scale(0.6 0.63)" 
+					font-size="40" fill="#ffffff" stroke-opacity="0" font-family="Serif" text-anchor="start">
+						<tspan x="0" dy="0">Chaos</tspan>
+						<tspan x="0" dy="46.15px">Eaters</tspan>
+						<tspan x="0" dy="46.15px">Multimedia</tspan>
+						<tspan x="0" dy="46.15px">Archives</tspan>
+					</text>
 				</svg>
-				<p style="margin:20px">FFOG: The Fog</p>
-				<svg width="500" height="10">
-					<rect width="500" height="10" x="0" y="0" fill="#cd98ec38"/>
-				</svg>
-				<p style="margin:20px">CSEA: Chaos Eaters Multimedia Archives Organization</p>
-				<svg width="500" height="10">
-					<rect width="500" height="10" x="0" y="0" fill="#f0c91a38"/>
-				</svg>
-				<p style="margin:20px">NPRO: Nerd Productions</p>
-				<br/><br/>
-				<p style="margin:20px;"><i>This graph shows the amount of Dollary Doos each company is worth. Caps at 20. Yes, I will add numbers later. Also it's just flat lines because nothing has happened. Also here are the specific values because it's borderline impossible to tell at the moment: Fog = 16, CEMMA = 5, Nerd Pro. = 0. Also just to clarify by "Caps at 20" I just mean that that's the top of the graph.</i></p>
 			</div>
-			<svg id="mCountGraph">
-			</svg>
-			<div style="overflow:hidden;">
-				<svg width="500" height="10">
-					<rect width="500" height="10" x="0" y="0" fill="#64646438"/>
-				</svg>
-				<p style="margin:20px">Henry Halsey</p>
-				<svg width="500" height="10">
-					<rect width="500" height="10" x="0" y="0" fill="#8adbe238"/>
-				</svg>
-				<p style="margin:20px">Eden Ye</p>
-				<svg width="500" height="10">
-					<rect width="500" height="10" x="0" y="0" fill="#cd98ec38"/>
-				</svg>
-				<p style="margin:20px">Konstantin Edunov</p>
-				<svg width="500" height="10">
-					<rect width="500" height="10" x="0" y="0" fill="#f0c91a38"/>
-				</svg>
-				<p style="margin:20px">Fedor Gladkoborodov</p>
-				<br/><br/>
-				<p style="margin:20px;"><i>This graph shows the amount of Dollary Doos each person owns. Caps at 20. Henry = 11, Eden = 5, Konstantin = 5, Fedor = 0.</i></p>
+			<div>
+				<div style="display:grid;grid-template-columns:1vw 4vw 40.5vw auto;min-height:100vh">
+					<div style="background-image:linear-gradient(to right, #8d8d8d, #00000000);"></div>
+					<div></div>
+					<div>
+						<h1 style="text-decoration:underline;">OVERALL STOCK PRICE GRAPH</h1>
+						<svg id="mCountGraph" style="border:0.25vw solid #ffffff;background-color:white;">
+						</svg>
+						<div style="margin-top:2vw">
+							<p></p>
+						</div>
+					</div>
+					<div>
+						<p></p>
+					</div>
+				</div>
 			</div>
-			<svg id="pCountGraph">
-			</svg>
 		</div>
 	</body>
 </html>
