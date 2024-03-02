@@ -1,129 +1,150 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>Stock Market | CSE MultiMedia Archives</title>
-		<meta charset="UTF-8"/>
-		<style>
-			html, body, svg{
-				margin: 0;
-				padding: 0;
-				font-family: Arial, Helvetica, sans-serif;
-				background-color: #f0f0f0;
-			}
-			#grid-layout{
-				display:grid;
-				grid-template-columns:15vw auto;
-			}
-		</style>
-		<script>
-			const mCountGraph = [["646464", [16, 16, 16],
-								  "cd98ec", [5 , 5 , 5 ],
-								  "f0c91a", [0 , 0 , 0 ]],
-								 ["mCountGraph", [100, 0], [window.innerHeight / 1.5, window.innerWidth / 1.5]],
-								 ["FFOG", "CSEA", "NPRO"]];
-			const pCountGraph = [["646464", [11, 11, 11],
-								  "8adbe2", [5 , 5 , 5 ],
-								  "cd98ec", [5 , 5 , 5 ],
-								  "f0c91a", [0 , 0 , 0 ]],
-								 ["pCountGraph", [20, 0], [window.innerHeight, window.innerWidth / 4]]];
-			// window.onresize = Graph([mCountGraph[0], [mCountGraph[1][0], mCountGraph[1][1], [window.innerHeight, window.innerWidth]]]);
-			function Graph(array)
-			{
-				document.getElementById(array[1][0]).setAttribute("height", array[1][2][0]);
-				document.getElementById(array[1][0]).setAttribute("width", array[1][2][1]);
-				let counter = 0;
-				let rsltStr = "";
-				while(counter < array[0].length / 2)
-				{
-					rsltStr += `<polyline id="${array[1][0] + counter}" style="fill:#${array[0][counter * 2]}38;stroke:none;stroke-width:${array[1][1][1]}px"/>`;
-					counter++;
-				}
-				counter = 0;
-				while(counter < array[0].length / 2)
-				{
-					rsltStr += `<text x="5" y="${array[1][2][0] - array[0][(counter + 1) * 2 - 1][0] * (array[1][2][0] - array[1][1][1]) / array[1][1][0] - array[1][1][1] / 2 - 5}"
-						 fill="#${array[0][counter * 2]}" stroke="black" stroke-width="0.2" font-size="20">
-						${array[2][counter]}</text>`;
-					rsltStr += `<text x="${array[1][2][1] - 5}" y="${array[1][2][0] - array[0][(counter + 1) * 2 - 1][array[0][(counter + 1) * 2 - 1].length - 1]
-						 * (array[1][2][0] - array[1][1][1]) / array[1][1][0] - array[1][1][1] / 2 - 5}"
-						 fill="#${array[0][counter * 2]}" stroke="black" stroke-width="0.2" font-size="20" text-anchor="end">
-						${array[0][(counter + 1) * 2 - 1][array[0][(counter + 1) * 2 - 1].length - 1]}</text>`;
-					counter++;
-				}
-				document.getElementById(array[1][0]).innerHTML = rsltStr;
-				let primaryCounter = 0;
-				while(primaryCounter < array[0].length / 2)
-				{
-					counter = 0;
-					rsltStr = `${array[1][1][1] / -2},${array[1][2][0]}
-					${array[1][1][1] / -2},${array[1][2][0] - array[0][(primaryCounter + 1) * 2 - 1][0] * (array[1][2][0] - array[1][1][1]) / array[1][1][0] - array[1][1][1] / 2} `;
-					while(counter < array[0][(primaryCounter + 1) * 2 - 1].length)
-					{
-						rsltStr += `${counter / (array[0][(primaryCounter + 1) * 2 - 1].length - 1) * array[1][2][1]},
-						${array[1][2][0] - array[0][(primaryCounter + 1) * 2 - 1][counter] * (array[1][2][0] - array[1][1][1]) / array[1][1][0] - array[1][1][1] / 2} `;
-						counter++;
-					}
-					rsltStr += `${array[1][2][1] + array[1][1][1]},${array[1][2][0] - array[0][(primaryCounter + 1) * 2 - 1][array[0][(primaryCounter + 1) * 2 - 1].length - 1]
-						 * (array[1][2][0] - array[1][1][1]) / array[1][1][0] - array[1][1][1] / 2}
-					${array[1][2][1] + array[1][1][1]},${array[1][2][0]}`
-					document.getElementById(array[1][0] + primaryCounter).setAttribute("points", rsltStr);
-					primaryCounter++;
-				}
-			}
-			function FillGraphs()
-			{
-				Graph(mCountGraph);
-				// Graph(pCountGraph);
-			}
-		</script>
-	</head>
-	<body onload="FillGraphs()">
-		<div id="grid-layout">
-			<div style="overflow:hidden;background-color:#dfdfdf;min-height:100vh">
-				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 224 112" style="padding:1vw;background-color:#dfdfdf;">
-					<g stroke="#000">
-						<path d="M52.5 10c25 2 32 20 32.5 46 0 25-5 43-32.5 46-25 2-43-20-43-46 0-25 19-48 43-46z" fill="none" stroke-width="19"/>
-						<path d="M85 13v87h.001V13z" stroke-width="19"/>
-						<path d="M84 56h0-73 0zM50 39v35h.001V39z" stroke-width="19"/>
-					</g>
-					<g stroke="#fff">
-						<path d="M52.5 10c25 2 32 20 32.5 46 0 25-5 43-32.5 46-25 2-43-20-43-46 0-25 19-48 43-46z" fill="none" stroke-width="15"/>
-						<path d="M85 13v87h.001V13z" stroke-width="15"/>
-						<path d="M84 56h0-73 0zM50 39v35h.001V39z" stroke-width="15"/>
-					</g>
-					<text transform="translate(112 20) scale(0.6 0.63)" 
-					font-size="40" fill="#000000" stroke="#000000" stroke-width="6" font-family="Serif" text-anchor="start">
-						<tspan x="0" dy="0">Chaos</tspan>
-						<tspan x="0" dy="46.15px">Eaters</tspan>
-						<tspan x="0" dy="46.15px">Multimedia</tspan>
-						<tspan x="0" dy="46.15px">Archives</tspan>
-					</text>
-					<text transform="translate(112 20) scale(0.6 0.63)" 
-					font-size="40" fill="#ffffff" stroke-opacity="0" font-family="Serif" text-anchor="start">
-						<tspan x="0" dy="0">Chaos</tspan>
-						<tspan x="0" dy="46.15px">Eaters</tspan>
-						<tspan x="0" dy="46.15px">Multimedia</tspan>
-						<tspan x="0" dy="46.15px">Archives</tspan>
-					</text>
-				</svg>
-			</div>
-			<div>
-				<div style="display:grid;grid-template-columns:1vw 4vw 40.5vw auto;min-height:100vh">
-					<div style="background-image:linear-gradient(to right, #8d8d8d, #00000000);"></div>
-					<div></div>
-					<div>
-						<h1 style="text-decoration:underline;">OVERALL STOCK PRICE GRAPH</h1>
-						<svg id="mCountGraph" style="border:0.25vw solid #ffffff;background-color:white;">
-						</svg>
-						<div style="margin-top:2vw">
-							<p></p>
-						</div>
-					</div>
-					<div>
-						<p></p>
-					</div>
-				</div>
-			</div>
-		</div>
-	</body>
+  <head>
+    <title>Stock Market | CSE MultiMedia Archives</title>
+    <meta charset="UTF-8"/>
+    <style>
+      html, body, svg{
+        margin: 0;
+        padding: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        background-color: #f0f0f0;
+      }
+      #grid-layout{
+        display:grid;
+        grid-template-columns:15vw auto;
+      }
+      .hidden{
+        display:none;
+      }
+    </style>
+    <script>
+      const mCountGraph = [["646464", [16, 16, 16, 16, 16],
+                     "cd98ec", [5 , 5 , 5 , 5 , 5 ],
+                     "f0c91a", [0 , 0 , 0 , 0 , 0 ]],
+                    ["mCountGraph", [100, 0], [window.innerHeight / 1.5, window.innerWidth / 1.5]],
+                    ["FFOG", "CSEA", "NPRO"]];
+      const pCountGraph = [["646464", [11, 11, 11, 11, 11],
+                     "8adbe2", [5 , 5 , 5 , 5 , 5 ],
+                     "cd98ec", [5 , 5 , 5 , 5 , 5 ],
+                     "f0c91a", [0 , 0 , 0 , 0 , 0 ]],
+                    ["pCountGraph", [100, 0], [window.innerHeight / 1.5, window.innerWidth / 1.5]],
+                    ["HRYH", "EDNY", "KSTE", "FDRG"]];
+      // window.onresize = Graph([mCountGraph[0], [mCountGraph[1][0], mCountGraph[1][1], [window.innerHeight, window.innerWidth]]]);
+      function Graph(array)
+      {
+        document.getElementById(array[1][0]).setAttribute("height", array[1][2][0]);
+        document.getElementById(array[1][0]).setAttribute("width", array[1][2][1]);
+        let counter = 0;
+        let rsltStr = "";
+        while(counter < array[0].length / 2)
+        {
+          rsltStr += `<polyline id="${array[1][0] + counter}" style="fill:#${array[0][counter * 2]}38;stroke:none;stroke-width:${array[1][1][1]}px"/>`;
+          counter++;
+        }
+        counter = 0;
+        while(counter < array[0].length / 2)
+        {
+          rsltStr += `<text x="${counter * 60 + 5}" y="${array[1][2][0] - array[0][(counter + 1) * 2 - 1][0] * (array[1][2][0] - array[1][1][1]) / array[1][1][0] - array[1][1][1] / 2 - 5}"
+             fill="#${array[0][counter * 2]}" stroke="black" stroke-width="0.2" font-size="20">
+            ${array[2][counter]}</text>`;
+          rsltStr += `<text x="${array[1][2][1] - 5}" y="${array[1][2][0] - array[0][(counter + 1) * 2 - 1][array[0][(counter + 1) * 2 - 1].length - 1]
+             * (array[1][2][0] - array[1][1][1]) / array[1][1][0] - array[1][1][1] / 2 - 5}"
+             fill="#${array[0][counter * 2]}" stroke="black" stroke-width="0.2" font-size="20" text-anchor="end">
+            ${array[0][(counter + 1) * 2 - 1][array[0][(counter + 1) * 2 - 1].length - 1]}</text>`;
+          counter++;
+        }
+        document.getElementById(array[1][0]).innerHTML = rsltStr;
+        let primaryCounter = 0;
+        while(primaryCounter < array[0].length / 2)
+        {
+          counter = 0;
+          rsltStr = `${array[1][1][1] / -2},${array[1][2][0]}
+          ${array[1][1][1] / -2},${array[1][2][0] - array[0][(primaryCounter + 1) * 2 - 1][0] * (array[1][2][0] - array[1][1][1]) / array[1][1][0] - array[1][1][1] / 2} `;
+          while(counter < array[0][(primaryCounter + 1) * 2 - 1].length)
+          {
+            rsltStr += `${counter / (array[0][(primaryCounter + 1) * 2 - 1].length - 1) * array[1][2][1]},
+            ${array[1][2][0] - array[0][(primaryCounter + 1) * 2 - 1][counter] * (array[1][2][0] - array[1][1][1]) / array[1][1][0] - array[1][1][1] / 2} `;
+            counter++;
+          }
+          rsltStr += `${array[1][2][1] + array[1][1][1]},${array[1][2][0] - array[0][(primaryCounter + 1) * 2 - 1][array[0][(primaryCounter + 1) * 2 - 1].length - 1]
+             * (array[1][2][0] - array[1][1][1]) / array[1][1][0] - array[1][1][1] / 2}
+          ${array[1][2][1] + array[1][1][1]},${array[1][2][0]}`
+          document.getElementById(array[1][0] + primaryCounter).setAttribute("points", rsltStr);
+          primaryCounter++;
+        }
+      }
+      function FillGraphs()
+      {
+        Graph(mCountGraph);
+        Graph(pCountGraph);
+      }
+      function Toggle()
+      {
+        document.getElementById("mCountGraph").classList.toggle("hidden");
+        document.getElementById("pCountGraph").classList.toggle("hidden");
+        if(document.getElementById("titleG").innerHTML == "OVERALL STOCK PRICE GRAPH")
+        {
+          document.getElementById("titleG").innerHTML = "INDIVIDUAL PEOPLE DOLLARY DOO COUNT"
+        }
+        else
+        {
+          document.getElementById("titleG").innerHTML = "OVERALL STOCK PRICE GRAPH"
+        }
+      }
+    </script>
+  </head>
+  <body onload="FillGraphs()">
+    <div id="grid-layout">
+      <div style="overflow:hidden;background-color:#dfdfdf;min-height:100vh">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 224 112" style="padding:1vw;background-color:#dfdfdf;">
+          <g stroke="#000">
+            <path d="M52.5 10c25 2 32 20 32.5 46 0 25-5 43-32.5 46-25 2-43-20-43-46 0-25 19-48 43-46z" fill="none" stroke-width="19"/>
+            <path d="M85 13v87h.001V13z" stroke-width="19"/>
+            <path d="M84 56h0-73 0zM50 39v35h.001V39z" stroke-width="19"/>
+          </g>
+          <g stroke="#fff">
+            <path d="M52.5 10c25 2 32 20 32.5 46 0 25-5 43-32.5 46-25 2-43-20-43-46 0-25 19-48 43-46z" fill="none" stroke-width="15"/>
+            <path d="M85 13v87h.001V13z" stroke-width="15"/>
+            <path d="M84 56h0-73 0zM50 39v35h.001V39z" stroke-width="15"/>
+          </g>
+          <text transform="translate(112 20) scale(0.6 0.63)" 
+          font-size="40" fill="#000000" stroke="#000000" stroke-width="6" font-family="Serif" text-anchor="start">
+            <tspan x="0" dy="0">Chaos</tspan>
+            <tspan x="0" dy="46.15px">Eaters</tspan>
+            <tspan x="0" dy="46.15px">Multimedia</tspan>
+            <tspan x="0" dy="46.15px">Archives</tspan>
+          </text>
+          <text transform="translate(112 20) scale(0.6 0.63)" 
+          font-size="40" fill="#ffffff" stroke-opacity="0" font-family="Serif" text-anchor="start">
+            <tspan x="0" dy="0">Chaos</tspan>
+            <tspan x="0" dy="46.15px">Eaters</tspan>
+            <tspan x="0" dy="46.15px">Multimedia</tspan>
+            <tspan x="0" dy="46.15px">Archives</tspan>
+          </text>
+        </svg>
+        <div>
+          <button style="display:block;background-color:#dfdfdf;min-width:100%;border:none;text-decoration:underline;"
+          onclick="Toggle()">
+            <i>Toggle Graph</i>
+          </button>
+        </div>
+      </div>
+      <div>
+        <div style="display:grid;grid-template-columns:1vw 4vw 40.5vw auto;min-height:100vh">
+          <div style="background-image:linear-gradient(to right, #8d8d8d, #00000000);"></div>
+          <div></div>
+          <div>
+            <h1 style="text-decoration:underline;" id="titleG">OVERALL STOCK PRICE GRAPH</h1>
+            <svg id="mCountGraph" style="border:0.25vw solid #ffffff;background-color:white;">
+            </svg>
+            <svg id="pCountGraph" style="border:0.25vw solid #ffffff;background-color:white;" class="hidden">
+            </svg>
+          </div>
+          <div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>
