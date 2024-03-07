@@ -4,6 +4,10 @@ html, body, svg, img{
   font-family: Arial, Helvetica, sans-serif;
   background-color: #f0f0f0;
 }
+img{
+  padding: 1vw !important;
+  background-color: #dfdfdf !important;
+}
 #grid-layout{
   display:grid;
   grid-template-columns:20vw auto;
