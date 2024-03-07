@@ -12,10 +12,10 @@
       }
       #grid-layout{
         display:grid;
-        grid-template-columns:15vw auto;
+        grid-template-columns:20vw auto;
       }
       .hidden{
-        display:none;
+        display:none !important;
       }
     </style>
     <script>
@@ -32,7 +32,21 @@
                             "72ba49", [0 , 0 , 0 , 0 , 0 , 0 , 2 , 2 , 0 , 1   ],
                             "450808", [0 , 0 , 0 , 0 , 0 , 0 , 1 , 3 , 3 , 3   ]],
                     ["pCountGraph", [20, 0], [window.innerHeight / 1.5, window.innerWidth / 1.5]],
-                    ["HRYH", "EDNY", "KSTE", "FDRG", "BRCS", "IIRS"]];
+                    ["HNRY", "EDEN", "KNST", "FEDR", "BRCE", "ISAC"]];
+      const FFOGown =     [["646464", [68.75, 68.75, 68.75, 68.75, 68.75, 68.75, 68.75, 68.75, 68.75, 68.75],
+                            "8adbe2", [31.25, 31.25, 31.25, 31.25, 31.25, 31.25, 31.25, 31.25, 31.25, 31.25]],
+                    ["FFOGown",     [110, 0], [window.innerHeight / 3, window.innerWidth / 3]],
+                    ["HNRY", "EDEN"]];
+      const CSEAown =     [["cd98ec", [100.0, 100.0, 100.0, 100.0, 100.0, 100.0, 100.0, 100.0, 100.0, 100.0]],
+                    ["CSEAown",     [110, 0], [window.innerHeight / 3, window.innerWidth / 3]],
+                    ["KNST"]];
+      const NPROown =     [["f0c91a", [0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000]],
+                    ["NPROown",     [110, 0], [window.innerHeight / 3, window.innerWidth / 3]],
+                    ["FEDR"]];
+      const STACown =     [["450808", [0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 100.0, 33.33, 33.33, 33.33],
+                            "cd98ec", [0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 66.66, 66.66, 66.66]],
+                    ["STACown",     [110, 0], [window.innerHeight / 3, window.innerWidth / 3]],
+                    ["ISAC", "KNST"]];
       // window.onresize = Graph([mCountGraph[0], [mCountGraph[1][0], mCountGraph[1][1], [window.innerHeight, window.innerWidth]]]);
       function Graph(array)
       {
@@ -81,19 +95,18 @@
       {
         Graph(mCountGraph);
         Graph(pCountGraph);
+        Graph(FFOGown);
+        Graph(CSEAown);
+        Graph(NPROown);
+        Graph(STACown);
       }
-      function Toggle()
+      function Toggle(toggle, titleG)
       {
-        document.getElementById("mCountGraph").classList.toggle("hidden");
-        document.getElementById("pCountGraph").classList.toggle("hidden");
-        if(document.getElementById("titleG").innerHTML == "OVERALL STOCK PRICE GRAPH")
-        {
-          document.getElementById("titleG").innerHTML = "INDIVIDUAL PEOPLE DOLLARY DOO COUNT"
-        }
-        else
-        {
-          document.getElementById("titleG").innerHTML = "OVERALL STOCK PRICE GRAPH"
-        }
+        document.getElementById("mCountGraph").classList.add("hidden");
+        document.getElementById("pCountGraph").classList.add("hidden");
+        document.getElementById("status").classList.add("hidden");
+        document.getElementById(toggle).classList.remove("hidden");
+        document.getElementById("titleG").innerHTML = titleG;
       }
     </script>
   </head>
@@ -127,9 +140,19 @@
           </text>
         </svg>
         <div>
-          <button style="display:block;background-color:#dfdfdf;min-width:100%;border:none;text-decoration:underline;"
-          onclick="Toggle()">
-            <i>Toggle Graph</i>
+          <button style="display:block;background-color:#dfdfdf;min-width:100%;border:none;text-decoration:underline;font-size:large;"
+          onclick="Toggle('mCountGraph', 'OVERALL STOCK PRICE GRAPH')">
+            <i>Company Prices</i>
+          </button>
+          <br/>
+          <button style="display:block;background-color:#dfdfdf;min-width:100%;border:none;text-decoration:underline;font-size:large;"
+          onclick="Toggle('pCountGraph', 'INDIVIDUAL PEOPLE DOLLARY DOO COUNT')">
+            <i>Individual People Prices</i>
+          </button>
+          <br/>
+          <button style="display:block;background-color:#dfdfdf;min-width:100%;border:none;text-decoration:underline;font-size:large;"
+          onclick="Toggle('status', 'COMPANY OWNERSHIP STATUS')">
+            <i>Company Ownership Status</i>
           </button>
         </div>
       </div>
@@ -143,6 +166,28 @@
             </svg>
             <svg id="pCountGraph" style="border:0.25vw solid #ffffff;background-color:white;" class="hidden">
             </svg>
+            <div style="margin:0;display:grid;grid-template-columns:auto auto;" id="status" class="hidden">
+              <div>
+                <h3 style="text-decoration:underline;">The Fog</h3>
+                <svg id="FFOGown" style="border:0.25vw solid #ffffff;background-color:white;">
+                </svg>
+              </div>
+              <div>
+                <h3 style="text-decoration:underline;">CSE Multimedia Archives, Org.</h3>
+                <svg id="CSEAown" style="border:0.25vw solid #ffffff;background-color:white;">
+                </svg>
+              </div>
+              <div>
+                <h3 style="text-decoration:underline;">Nerd Pro.</h3>
+                <svg id="NPROown" style="border:0.25vw solid #ffffff;background-color:white;">
+                </svg>
+              </div>
+              <div>
+                <h3 style="text-decoration:underline;">Stratford Accounting, Ltd.</h3>
+                <svg id="STACown" style="border:0.25vw solid #ffffff;background-color:white;">
+                </svg>
+              </div>
+            </div>
           </div>
           <div>
           </div>
