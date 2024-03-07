@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 224 112" style="padding:1vw;background-color:#dfdfdf;">
+<g stroke="#000">
+  <path d="M52.5 10c25 2 32 20 32.5 46 0 25-5 43-32.5 46-25 2-43-20-43-46 0-25 19-48 43-46z" fill="none" stroke-width="19"/>
+  <path d="M85 13v87h.001V13z" stroke-width="19"/>
+  <path d="M84 56h0-73 0zM50 39v35h.001V39z" stroke-width="19"/>
+</g>
+<g stroke="#fff">
+  <path d="M52.5 10c25 2 32 20 32.5 46 0 25-5 43-32.5 46-25 2-43-20-43-46 0-25 19-48 43-46z" fill="none" stroke-width="15"/>
+  <path d="M85 13v87h.001V13z" stroke-width="15"/>
+  <path d="M84 56h0-73 0zM50 39v35h.001V39z" stroke-width="15"/>
+</g>
+<text transform="translate(112 20) scale(0.6 0.63)" 
+font-size="40" fill="#000000" stroke="#000000" stroke-width="6" font-family="Serif" text-anchor="start">
+  <tspan x="0" dy="0">Chaos</tspan>
+  <tspan x="0" dy="46.15px">Eaters</tspan>
+  <tspan x="0" dy="46.15px">Multimedia</tspan>
+  <tspan x="0" dy="46.15px">Archives</tspan>
+</text>
+<text transform="translate(112 20) scale(0.6 0.63)" 
+font-size="40" fill="#ffffff" stroke-opacity="0" font-family="Serif" text-anchor="start">
+  <tspan x="0" dy="0">Chaos</tspan>
+  <tspan x="0" dy="46.15px">Eaters</tspan>
+  <tspan x="0" dy="46.15px">Multimedia</tspan>
+  <tspan x="0" dy="46.15px">Archives</tspan>
+</text>
+</svg>
