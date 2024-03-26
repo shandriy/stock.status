@@ -1,72 +1,72 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Stocks | CSE MultiMedia Archives, Org.</title>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <meta name="author" content="Konstantin Edunov, Chaos Eaters MMA"/>
-    <link rel="stylesheet" href="style.css"/>
-    <script src="jscript/main.js" type="text/javascript"></script>
-    <script src="jscript/vals.js" type="text/javascript"></script>
-  </head>
-  <body onload="FillGraphs()">
-    <div id="grid-layout">
-      <div style="overflow:hidden;background-color:#dfdfdf;min-height:100vh">
-        <img src="logo.svg" style="margin:1vw"/>
-        <div>
-          <button style="display:block;background-color:#dfdfdf;min-width:100%;border:none;text-decoration:underline;font-size:large;"
-          onclick="Toggle('mCountGraph', 'OVERALL STOCK PRICE GRAPH')">
-            <i>Company Prices</i>
-          </button>
-          <br/>
-          <button style="display:block;background-color:#dfdfdf;min-width:100%;border:none;text-decoration:underline;font-size:large;"
-          onclick="Toggle('pCountGraph', 'INDIVIDUAL PEOPLE DOLLARY DOO COUNT')">
-            <i>Individual People Prices</i>
-          </button>
-          <br/>
-          <button style="display:block;background-color:#dfdfdf;min-width:100%;border:none;text-decoration:underline;font-size:large;"
-          onclick="Toggle('status', 'COMPANY OWNERSHIP STATUS')">
-            <i>Company Ownership Status</i>
-          </button>
-        </div>
+<head>
+  <title>Stocks | CSE MultiMedia Archives, Org.</title>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="author" content="Konstantin Edunov, Chaos Eaters MMA"/>
+  <link rel="stylesheet" href="style.css"/>
+  <script src="jscript/main.js" type="text/javascript"></script>
+  <script src="jscript/vals.js" type="text/javascript"></script>
+</head>
+<body onload="FillGraphs()">
+<div id="grid-layout">
+  <div style="overflow:hidden;background-color:#dfdfdf;min-height:100vh">
+    <img src="logo.svg" style="margin:1vw"/>
+    <div>
+      <button style="display:block;background-color:#dfdfdf;min-width:100%;border:none;text-decoration:underline;font-size:large;"
+      onclick="Toggle('mCountGraph', 'OVERALL STOCK PRICE GRAPH')">
+        <i>Company Prices</i>
+      </button>
+      <br/>
+      <button style="display:block;background-color:#dfdfdf;min-width:100%;border:none;text-decoration:underline;font-size:large;"
+      onclick="Toggle('pCountGraph', 'INDIVIDUAL PEOPLE DOLLARY DOO COUNT')">
+        <i>Individual People Prices</i>
+      </button>
+      <br/>
+      <button style="display:block;background-color:#dfdfdf;min-width:100%;border:none;text-decoration:underline;font-size:large;"
+      onclick="Toggle('status', 'COMPANY OWNERSHIP STATUS')">
+        <i>Company Ownership Status</i>
+      </button>
+    </div>
+  </div>
+  <div>
+  <div style="display:grid;grid-template-columns:1vw 4vw 40.5vw auto;min-height:100vh">
+  <div style="background-image:linear-gradient(to right, #8d8d8d, #00000000);"></div>
+  <div></div>
+  <div>
+    <h1 style="text-decoration:underline;" id="titleG">OVERALL STOCK PRICE GRAPH</h1>
+    <svg id="mCountGraph" style="border:0.25vw solid #ffffff;background-color:white;">
+    </svg>
+    <svg id="pCountGraph" style="border:0.25vw solid #ffffff;background-color:white;" class="hidden">
+    </svg>
+    <div style="margin:0;display:grid;grid-template-columns:auto auto;" id="status" class="hidden">
+      <div>
+        <h3 style="text-decoration:underline;">The Fog</h3>
+        <svg id="FFOGown" style="border:0.25vw solid #ffffff;background-color:white;">
+        </svg>
       </div>
       <div>
-        <div style="display:grid;grid-template-columns:1vw 4vw 40.5vw auto;min-height:100vh">
-          <div style="background-image:linear-gradient(to right, #8d8d8d, #00000000);"></div>
-          <div></div>
-          <div>
-            <h1 style="text-decoration:underline;" id="titleG">OVERALL STOCK PRICE GRAPH</h1>
-            <svg id="mCountGraph" style="border:0.25vw solid #ffffff;background-color:white;">
-            </svg>
-            <svg id="pCountGraph" style="border:0.25vw solid #ffffff;background-color:white;" class="hidden">
-            </svg>
-            <div style="margin:0;display:grid;grid-template-columns:auto auto;" id="status" class="hidden">
-              <div>
-                <h3 style="text-decoration:underline;">The Fog</h3>
-                <svg id="FFOGown" style="border:0.25vw solid #ffffff;background-color:white;">
-                </svg>
-              </div>
-              <div>
-                <h3 style="text-decoration:underline;">CSE Multimedia Archives, Org.</h3>
-                <svg id="CSEAown" style="border:0.25vw solid #ffffff;background-color:white;">
-                </svg>
-              </div>
-              <div>
-                <h3 style="text-decoration:underline;">Nerd Pro.</h3>
-                <svg id="NPROown" style="border:0.25vw solid #ffffff;background-color:white;">
-                </svg>
-              </div>
-              <div>
-                <h3 style="text-decoration:underline;">Stratford Accounting, Ltd.</h3>
-                <svg id="STACown" style="border:0.25vw solid #ffffff;background-color:white;">
-                </svg>
-              </div>
-            </div>
-          </div>
-          <div>
-          </div>
-        </div>
+        <h3 style="text-decoration:underline;">CSE Multimedia Archives, Org.</h3>
+        <svg id="CSEAown" style="border:0.25vw solid #ffffff;background-color:white;">
+        </svg>
+      </div>
+      <div>
+        <h3 style="text-decoration:underline;">Nerd Pro.</h3>
+        <svg id="NPROown" style="border:0.25vw solid #ffffff;background-color:white;">
+        </svg>
+      </div>
+      <div>
+        <h3 style="text-decoration:underline;">Stratford Accounting, Ltd.</h3>
+        <svg id="STACown" style="border:0.25vw solid #ffffff;background-color:white;">
+        </svg>
       </div>
     </div>
-  </body>
+    </div>
+    <div>
+    </div>
+  </div>
+  </div>
+</div>
+</body>
 </html>
